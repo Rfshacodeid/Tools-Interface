@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 - Page Not Found | Kali Web Tools</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --kali-bg: #0d1117;
+      --kali-text: #e6e6e6;
+      --kali-primary: #5578c4;
+      --kali-accent: #ff5555;
+      --kali-border: #30363d;
+      --kali-success: #50fa7b;
+      --kali-warning: #f1fa8c;
+      --kali-error: #ff5555;
+      --kali-header: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    body {
+      background-color: var(--kali-bg);
+      color: var(--kali-text);
+      font-family: 'Ubuntu Mono', monospace;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .navbar {
+      background: var(--kali-header);
+      border-bottom: 1px solid var(--kali-primary);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      font-weight: bold;
+      color: var(--kali-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+    }
+
+    .nav-brand span {
+      color: var(--kali-accent);
+    }
+
+    .error-container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .error-title {
+      font-size: 4rem;
+      color: var(--kali-error);
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--kali-error);
+      animation: glitch 2s linear infinite;
+    }
+
+    .error-subtitle {
+      font-size: 1.5rem;
+      color: var(--kali-text);
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .terminal-box {
+      background-color: rgba(22, 27, 34, 0.8);
+      border: 1px solid var(--kali-border);
+      border-radius: 6px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .terminal-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--kali-primary), var(--kali-accent));
+    }
+
+    .terminal-box:hover {
+      border-color: var(--kali-primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .command-line {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-left: 3px solid var(--kali-primary);
+      padding: 12px 15px;
+      margin: 15px 0;
+      font-family: 'Ubuntu Mono', monospace;
+      color: var(--kali-success);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .command-line::before {
+      content: "$ ";
+      color: var(--kali-accent);
+      font-weight: bold;
+    }
+
+    .btn-kali {
+      background-color: var(--kali-primary);
+      color: black;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      transition: all 0.3s ease;
+      font-family: 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    .btn-kali:hover {
+      background-color: var(--kali-accent);
+      color: black;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 85, 85, 0.4);
+    }
+
+    .btn-kali:active {
+      transform: translateY(0);
+    }
+
+    /* Glitch Animation */
+    @keyframes glitch {
+      0% {
+        text-shadow: 0.05em 0 0 var(--kali-error), -0.05em 0 0 var(--kali-primary);
+      }
+      14% {
+        text-shadow: 0.05em 0 0 var(--kali-error), -0.05em 0 0 var(--kali-primary);
+      }
+      15% {
+        text-shadow: -0.05em -0.025em 0 var(--kali-error), 0.025em 0.05em 0 var(--kali-primary);
+      }
+      49% {
+        text-shadow: -0.05em -0.025em 0 var(--kali-error), 0.025em 0.05em 0 var(--kali-primary);
+      }
+      50% {
+        text-shadow: 0.025em 0.05em 0 var(--kali-error), -0.05em 0 0 var(--kali-primary);
+      }
+      99% {
+        text-shadow: 0.025em 0.05em 0 var(--kali-error), -0.05em 0 0 var(--kali-primary);
+      }
+      100% {
+        text-shadow: -0.025em 0 0 var(--kali-error), -0.025em -0.025em 0 var(--kali-primary);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .error-title {
+        font-size: 2.5rem;
+      }
+
+      .error-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .terminal-box {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark px-3 py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand nav-brand" href="/">
+        <i class="fas fa-terminal me-2"></i>KaliWebTools
+      </a>
+    </div>
+  </nav>
+
+  <div class="error-container">
+    <h1 class="error-title">404</h1>
+    <h2 class="error-subtitle">Target Not Found in the Matrix</h2>
+    <div class="terminal-box">
+      <p class="terminal-desc">Whoops! Looks like the page you’re trying to access is hidden in the dark web or doesn’t exist in this server’s filesystem.</p>
+      <div class="command-line">ERROR: /page_not_found - No such file or directory</div>
+      <a href="/" class="btn btn-kali">Return to Base</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
